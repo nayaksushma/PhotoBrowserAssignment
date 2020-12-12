@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct PhotoDirectory: Decodable {
+    let photoList: [Photo]
+}
+
+struct Photo: Decodable {
+    let title: String
+    let authorName: String
+    let thumbnailImageURL: String?
+    let detailImageURL: String?
+}
