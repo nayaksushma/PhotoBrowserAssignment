@@ -1,4 +1,4 @@
-#PhotoBrowse.
+# PhotoBrowser.
 ===========================
 ### Author
 Sushma nayak
@@ -6,33 +6,32 @@ Sushma nayak
 ### Description
 A native iOS iPhone only app for viewing photos downloaded over a static json url. Search by title functionality is also added.
 
-
-##Dependencies
+## Dependencies
 
 Alamofire
 SDWebImage
 
-##Tools
+## Tools
 
 Xcode 11.1
 CocoaPods
 
-##Architecture
+## Architecture
 
 `MVVM` architecture pattern is used.
 
-##Language
+## Language
 
 Swift
 
-##Folder Structure 
+## Folder Structure 
 
 - All  `Models` will have its own folder called `Models` eg -
 - All  `ViewModels` will have its own folder called `ViewModel` 
 - All  `ViewControllers` will have its own folder called `ViewController`
 	
 
-##Configuration
+## Configuration
     
 The iOS project has the following configuration:
     
@@ -42,5 +41,6 @@ The iOS project has the following configuration:
 
 
 ## Steps To Run
-1. Open `PhotoBrowser.xcworkspace`.
-2. Choose the desired destination and tap run button or Hit ⌘R
+1. Run `pod install`from terminal to install cocoapods. This will generate the `xcworkspace` file.
+2. Open `PhotoBrowser.xcworkspace`.
+3. Choose the desired destination and tap run button or Hit ⌘R
