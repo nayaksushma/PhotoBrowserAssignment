@@ -12,16 +12,33 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" alpha="0.84999999999999998" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill.on.rectangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IXi-im-yC7">
+                                <rect key="frame" x="107" y="353" width="200" height="200"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="kpr-He-9Uz"/>
+                                    <constraint firstAttribute="height" constant="200" id="zi3-74-O7f"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IXi-im-yC7" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="eSd-pZ-ulq"/>
+                            <constraint firstItem="IXi-im-yC7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="o4z-Fp-ie6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="171"/>
+            <point key="canvasLocation" x="57.971014492753625" y="170.75892857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>
+    </resources>
 </document>
