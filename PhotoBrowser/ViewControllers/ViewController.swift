@@ -14,16 +14,27 @@ class ViewController: UIViewController {
     fileprivate let photoListVM = PhotoListViewModel()
     private static let photoCellReuseIdentifier = "photoListCell"
     
+    @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var photoListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        searchBarView.delegate = self
         photoListVM.reloadDataHandler = {[weak self] in
             self?.photoListTableView.reloadData()
         }
         photoListTableView.estimatedRowHeight = 120
         photoListTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    @IBAction func didTapFilter(_ sender: Any) {
+        guard photoListVM.numberOfPhotos() > 0 else {
+            return
+        }
+        navigationItem.titleView = searchBarView
+        searchBarView.searchTextField.becomeFirstResponder()
+        navigationItem.setRightBarButton(nil, animated: false)
     }
 }
 
@@ -46,7 +57,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-
+//MARK:- UITableViewDelegate Methods.
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
@@ -55,5 +66,18 @@ extension ViewController: UITableViewDelegate {
         detailVC.photoVM = photoListVM
         detailVC.selectedIndex = indexPath
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+//MARK:- UISearchBarDelegate Methods.
+extension ViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapFilter(_:)))
+        navigationItem.titleView = nil
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("text = \(searchBar.text)")
     }
 }
