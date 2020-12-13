@@ -8,10 +8,16 @@
 
 import Foundation
 
+enum PhotoVMState{
+    case fetchingContent
+    case loaded
+    case filtering
+}
+
 
 class PhotoListViewModel {
     
-    private var photosDirectory:PhotoDirectory?{
+    private var photosDirectory: PhotoDirectory?{
         didSet{
             guard let reloadData = reloadDataHandler else {
                 return
@@ -19,15 +25,30 @@ class PhotoListViewModel {
             reloadData()
         }
     }
+    
+    private var filteredDirectory: PhotoDirectory? = nil {
+        didSet{
+            guard let _ = filteredDirectory else{
+                state = .loaded
+                reloadDataHandler!()
+                return
+            }
+            state = .filtering
+            reloadDataHandler!()
+        }
+    }
+    
+    private(set) var state:PhotoVMState
         
     lazy var numberOfPhotos = {
-        return self.photosDirectory?.photoList.count ?? 0
+        return self.currentStateDirectory()?.photoList.count ?? 0
     }
         
     /// Will be invoked when any changes to the data is happens.
     var reloadDataHandler:(()->())?
     
     init() {
+        state = .fetchingContent
         fetchPhotosList()
     }
 }
@@ -49,21 +70,45 @@ extension PhotoListViewModel {
 //MARK:- Data Methods.
 extension PhotoListViewModel {
     
+    private func currentStateDirectory() -> PhotoDirectory? {
+        switch state {
+        case .filtering:
+            return filteredDirectory
+        default:
+            return photosDirectory
+        }
+    }
+    
     func nameForPhotoAtIndex(_ index: Int) -> String {
-        return photosDirectory?.photoList[index].title ?? ""
+        return currentStateDirectory()?.photoList[index].title ?? ""
     }
     
     func authorNameForPhotoAtIndex(_ index: Int) -> String {
-        return photosDirectory?.photoList[index].authorName ?? ""
+        return currentStateDirectory()?.photoList[index].authorName ?? ""
     }
     
     func thumbURLForPhotoAtIndex(_ index: Int) -> String {
-        return photosDirectory?.photoList[index].thumbnailImageURL ?? ""
+        return currentStateDirectory()?.photoList[index].thumbnailImageURL ?? ""
     }
     
     func URLForPhotoAtIndex(_ index: Int) -> String {
-        return photosDirectory?.photoList[index].detailImageURL ?? ""
+        return currentStateDirectory()?.photoList[index].detailImageURL ?? ""
     }
 
 }
  
+//MARK:- Data Filter.
+extension PhotoListViewModel {
+    
+    func filterTitleWithQuery(_ queryText: String) {
+        
+        guard let filteredPhotos = photosDirectory?.photoList.filter({ return  $0.title.lowercased().contains(queryText.lowercased()) }) else {
+            return
+        }
+        filteredDirectory = PhotoDirectory(with: filteredPhotos)
+    }
+    
+    func cancelFiltering() {
+        filteredDirectory = nil
+    }
+}

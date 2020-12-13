@@ -25,6 +25,9 @@ struct PhotoDirectory: Decodable {
         photoList = try collection.decode([Photo].self, forKey: .children)
     }
     
+    init(with photos: [Photo]) {
+        photoList = photos
+    }
 }
 
 struct Photo: Decodable {

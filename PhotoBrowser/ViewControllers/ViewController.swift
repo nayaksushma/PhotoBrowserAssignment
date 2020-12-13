@@ -75,9 +75,14 @@ extension ViewController: UISearchBarDelegate {
         searchBar.text = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapFilter(_:)))
         navigationItem.titleView = nil
+        photoListVM.cancelFiltering()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("text = \(searchBar.text)")
+        guard let searchText = searchBar.text, false == searchText.isEmpty else {
+            return
+        }
+        photoListVM.filterTitleWithQuery(searchText)
+        searchBarView.searchTextField.resignFirstResponder()
     }
 }
