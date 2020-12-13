@@ -88,20 +88,30 @@ extension PhotoListViewModel {
         }
     }
     
+    internal func isIndexSafe(_ index:Int) -> Bool {
+        guard let directory = currentStateDirectory(), directory.photoList.count > 0 else {
+            return false
+        }
+        guard index < directory.photoList.count, index >= 0 else {
+            return false
+        }
+        return true
+    }
+    
     func nameForPhotoAtIndex(_ index: Int) -> String {
-        return currentStateDirectory()?.photoList[index].title ?? ""
+        return isIndexSafe(index) ? currentStateDirectory()?.photoList[index].title ?? "" : ""
     }
     
     func authorNameForPhotoAtIndex(_ index: Int) -> String {
-        return currentStateDirectory()?.photoList[index].authorName ?? ""
+        return isIndexSafe(index) ? currentStateDirectory()?.photoList[index].authorName ?? "" : ""
     }
     
     func thumbURLForPhotoAtIndex(_ index: Int) -> String {
-        return currentStateDirectory()?.photoList[index].thumbnailImageURL ?? ""
+        return isIndexSafe(index) ? currentStateDirectory()?.photoList[index].thumbnailImageURL ?? "": ""
     }
     
     func URLForPhotoAtIndex(_ index: Int) -> String {
-        return currentStateDirectory()?.photoList[index].detailImageURL ?? ""
+        return isIndexSafe(index) ? currentStateDirectory()?.photoList[index].detailImageURL ?? "" : ""
     }
 
 }

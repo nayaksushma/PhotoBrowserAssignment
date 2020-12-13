@@ -72,10 +72,17 @@ class PhotoBrowserTests: XCTestCase {
         XCTAssertEqual(PhotoVMState.filtering, photoVM.state)
     }
     
-    func testNoPhotos() {
+    func testIndexSafety() {
         let photoDir = PhotoDirectory(with: [])
         let photoVM = PhotoListViewModel(directory: photoDir)
-        XCTAssertEqual("", photoVM.nameForPhotoAtIndex(0))
+        XCTAssertFalse(photoVM.isIndexSafe(0))
+        XCTAssertFalse(photoVM.isIndexSafe(-1))
+        
+        let photoVM2 = samplePhotoVM()
+        XCTAssertFalse(photoVM2.isIndexSafe(7))
+        XCTAssertTrue(photoVM2.isIndexSafe(0))
+        XCTAssertFalse(photoVM2.isIndexSafe(-1))
+        XCTAssertTrue(photoVM2.isIndexSafe(4))
     }
     
     private func samplePhotoVM() -> PhotoListViewModel {
