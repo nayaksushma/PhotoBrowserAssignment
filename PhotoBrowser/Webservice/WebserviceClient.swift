@@ -26,7 +26,7 @@ enum WebserviceRouter: URLRequestConvertible {
     private var path: String {
         switch self {
         case .photoList:
-            return "/data/sessions.json"
+            return "/pics/.json"
         }
     }
     

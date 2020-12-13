@@ -11,11 +11,21 @@ import Foundation
 
 class PhotoListViewModel {
     
-    private var photosDirectory:PhotoDirectory?
-    
-    lazy var numberOfPhotos: Int = {
+    private var photosDirectory:PhotoDirectory?{
+        didSet{
+            guard let reloadData = reloadDataHandler else {
+                return
+            }
+            reloadData()
+        }
+    }
+        
+    lazy var numberOfPhotos = {
         return self.photosDirectory?.photoList.count ?? 0
-    }()
+    }
+        
+    /// Will be invoked when any changes to the data is happens.
+    var reloadDataHandler:(()->())?
     
     init() {
         fetchPhotosList()
@@ -34,3 +44,12 @@ extension PhotoListViewModel {
         }
     }
 }
+
+//MARK:- Data Methods.
+extension PhotoListViewModel {
+    
+    func nameForPhotoAtIndex(_ index: Int) -> String {
+        return photosDirectory?.photoList[index].title ?? ""
+    }
+}
+ 

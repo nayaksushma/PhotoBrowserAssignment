@@ -6,7 +6,7 @@ target 'PhotoBrowser' do
   use_frameworks!
 
   # Pods for PhotoBrowser
-  pod 'Alamofire', '~> 5.2'
+  pod 'Alamofire', '~> 5.0.0-rc.3'
 
   target 'PhotoBrowserTests' do
     inherit! :search_paths
