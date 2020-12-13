@@ -19,9 +19,6 @@ class PhotoListViewModel {
     
     private var photosDirectory: PhotoDirectory?{
         didSet{
-            guard let reloadData = reloadDataHandler else {
-                return
-            }
             reloadData()
         }
     }
@@ -30,11 +27,11 @@ class PhotoListViewModel {
         didSet{
             guard let _ = filteredDirectory else{
                 state = .loaded
-                reloadDataHandler!()
+                reloadData()
                 return
             }
             state = .filtering
-            reloadDataHandler!()
+            reloadData()
         }
     }
     
@@ -50,6 +47,18 @@ class PhotoListViewModel {
     init() {
         state = .fetchingContent
         fetchPhotosList()
+    }
+    
+    init(directory: PhotoDirectory?) {
+        state = .loaded
+        photosDirectory = directory
+    }
+    
+    func reloadData() {
+        guard let reloadData = reloadDataHandler else {
+            return
+        }
+        reloadData()
     }
 }
 
@@ -101,14 +110,18 @@ extension PhotoListViewModel {
 extension PhotoListViewModel {
     
     func filterTitleWithQuery(_ queryText: String) {
-        
-        guard let filteredPhotos = photosDirectory?.photoList.filter({ return  $0.title.lowercased().contains(queryText.lowercased()) }) else {
+        guard let filteredPhotos = filteredPhotosForQuery(queryText) else {
             return
         }
         filteredDirectory = PhotoDirectory(with: filteredPhotos)
     }
     
+    internal func filteredPhotosForQuery(_ queryText:String) -> [Photo]? {
+        return photosDirectory?.photoList.filter({ return  $0.title.lowercased().contains(queryText.lowercased()) })
+    }
+    
     func cancelFiltering() {
         filteredDirectory = nil
+        
     }
 }

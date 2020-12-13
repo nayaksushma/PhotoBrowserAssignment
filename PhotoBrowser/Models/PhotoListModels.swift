@@ -30,7 +30,7 @@ struct PhotoDirectory: Decodable {
     }
 }
 
-struct Photo: Decodable {
+struct Photo: Decodable, Equatable {
     let title: String
     let authorName: String?
     let thumbnailImageURL: String?
@@ -54,5 +54,12 @@ struct Photo: Decodable {
         authorName = try collection.decode(String.self, forKey: .authorName)
         thumbnailImageURL = try collection.decode(String.self, forKey: .thumbnailImageURL)
         detailImageURL = try collection.decode(String.self, forKey: .detailImageURL)
+    }
+    
+    init(with title: String, author: String?, thumbURL: String?, detailURL: String?) {
+        self.title = title
+        self.authorName = author
+        thumbnailImageURL = thumbURL
+        detailImageURL = detailURL
     }
 }
