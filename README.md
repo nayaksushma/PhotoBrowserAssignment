@@ -41,6 +41,6 @@ The iOS project has the following configuration:
 
 
 ## Steps To Run
-1. Run `pod install`from terminal to install cocoapods. This will generate the `xcworkspace` file.
+1. Navigate to the project directory and run `pod install`from terminal to install cocoapods. This will generate the `xcworkspace` file.
 2. Open `PhotoBrowser.xcworkspace`.
 3. Choose the desired destination and tap run button or Hit ⌘R
