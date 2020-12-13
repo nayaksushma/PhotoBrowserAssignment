@@ -1,5 +1,5 @@
 # PhotoBrowser.
-===========================
+
 ### Author
 Sushma nayak
 
