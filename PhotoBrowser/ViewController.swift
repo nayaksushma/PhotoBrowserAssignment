@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let photoListVM = PhotoListViewModel()
+    static let photoCellReuseIdentifier = "photoListCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -18,3 +21,18 @@ class ViewController: UIViewController {
 
 }
 
+
+//MARK:- UITableViewDataSource Methods.
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photoListVM.numberOfPhotos
+    }
+    
+    @available(iOS 2.0, *)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let photoCell = tableView.dequeueReusableCell(withIdentifier: ViewController.photoCellReuseIdentifier, for: indexPath) 
+        return photoCell
+    }
+
+}

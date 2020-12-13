@@ -22,7 +22,7 @@ final class WebserviceClient {
         }
     }
     
-    static func getAllPhotos(completion:@escaping (Result<[PhotoDirectory], AFError>)->Void) {
+    static func getAllPhotos(completion:@escaping (Result<PhotoDirectory, AFError>)->Void) {
         performJSONRequest(route: WebserviceRouter.photoList, completion: completion)
     }
 }
