@@ -53,8 +53,16 @@ extension PhotoListViewModel {
         return photosDirectory?.photoList[index].title ?? ""
     }
     
+    func authorNameForPhotoAtIndex(_ index: Int) -> String {
+        return photosDirectory?.photoList[index].authorName ?? ""
+    }
+    
     func thumbURLForPhotoAtIndex(_ index: Int) -> String {
         return photosDirectory?.photoList[index].thumbnailImageURL ?? ""
+    }
+    
+    func URLForPhotoAtIndex(_ index: Int) -> String {
+        return photosDirectory?.photoList[index].detailImageURL ?? ""
     }
 
 }
