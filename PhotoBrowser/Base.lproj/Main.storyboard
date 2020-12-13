@@ -96,7 +96,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="94x-pa-Dam"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Photos" id="vAY-z0-T4a"/>
+                    <navigationItem key="navigationItem" title="Photos" id="vAY-z0-T4a">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass.circle" catalog="system" id="KWT-Vy-ppI"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="photoListTableView" destination="DZH-Q4-OOD" id="Rpc-iD-sig"/>
                     </connections>
@@ -119,7 +121,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AVj-8P-4Q4">
                                 <rect key="frame" x="197" y="443" width="20" height="20"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7w-gD-rmG">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7w-gD-rmG">
                                 <rect key="frame" x="0.0" y="793.5" width="414" height="68.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJp-Vu-BZI">
@@ -174,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass.circle" catalog="system" width="64" height="60"/>
         <image name="placeholder_thumb" width="120" height="90"/>
     </resources>
 </document>

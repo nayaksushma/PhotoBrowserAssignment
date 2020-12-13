@@ -24,10 +24,7 @@ class ViewController: UIViewController {
         }
         photoListTableView.estimatedRowHeight = 120
         photoListTableView.rowHeight = UITableView.automaticDimension
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
-
-
 }
 
 
