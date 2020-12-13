@@ -32,6 +32,7 @@ class PhotoListViewModel {
     }
 }
 
+//MARK:- Data Fetch.
 extension PhotoListViewModel {
     fileprivate func fetchPhotosList() {
         WebserviceClient.getAllPhotos { [weak self] (result) in
@@ -51,5 +52,10 @@ extension PhotoListViewModel {
     func nameForPhotoAtIndex(_ index: Int) -> String {
         return photosDirectory?.photoList[index].title ?? ""
     }
+    
+    func thumbURLForPhotoAtIndex(_ index: Int) -> String {
+        return photosDirectory?.photoList[index].thumbnailImageURL ?? ""
+    }
+
 }
  

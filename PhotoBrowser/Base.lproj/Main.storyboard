@@ -43,12 +43,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T13-49-Suf">
-                                                    <rect key="frame" x="10" y="26.5" width="100" height="67"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_thumb" translatesAutoresizingMaskIntoConstraints="NO" id="T13-49-Suf">
+                                                    <rect key="frame" x="20" y="22.5" width="100" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="P94-f7-1R6"/>
-                                                        <constraint firstAttribute="width" secondItem="T13-49-Suf" secondAttribute="height" multiplier="3:2" id="i6f-ya-voY"/>
+                                                        <constraint firstAttribute="width" secondItem="T13-49-Suf" secondAttribute="height" multiplier="4:3" id="i6f-ya-voY"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSp-zW-6qH">
                                                     <rect key="frame" x="130" y="10" width="264" height="100"/>
@@ -60,11 +65,13 @@
                                             <constraints>
                                                 <constraint firstItem="T13-49-Suf" firstAttribute="centerY" secondItem="oWA-8R-cOd" secondAttribute="centerY" id="0Wz-ut-TcJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZSp-zW-6qH" secondAttribute="trailing" constant="20" id="249-18-XDA"/>
-                                                <constraint firstItem="ZSp-zW-6qH" firstAttribute="leading" secondItem="T13-49-Suf" secondAttribute="trailing" constant="20" id="8eo-eW-k1N"/>
+                                                <constraint firstItem="ZSp-zW-6qH" firstAttribute="leading" secondItem="T13-49-Suf" secondAttribute="trailing" constant="10" id="8eo-eW-k1N"/>
                                                 <constraint firstItem="ZSp-zW-6qH" firstAttribute="centerY" secondItem="oWA-8R-cOd" secondAttribute="centerY" id="MMQ-ml-M2b"/>
                                                 <constraint firstItem="ZSp-zW-6qH" firstAttribute="top" secondItem="oWA-8R-cOd" secondAttribute="top" constant="10" id="Pna-vQ-TwP"/>
+                                                <constraint firstAttribute="bottom" secondItem="T13-49-Suf" secondAttribute="bottom" priority="750" constant="10" id="dhG-yb-9xf"/>
+                                                <constraint firstItem="T13-49-Suf" firstAttribute="top" secondItem="oWA-8R-cOd" secondAttribute="top" priority="750" constant="10" id="hbs-Ve-CTp"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZSp-zW-6qH" secondAttribute="bottom" constant="10" id="v90-lU-b7T"/>
-                                                <constraint firstItem="T13-49-Suf" firstAttribute="leading" secondItem="oWA-8R-cOd" secondAttribute="leading" constant="10" id="wIe-rs-X3l"/>
+                                                <constraint firstItem="T13-49-Suf" firstAttribute="leading" secondItem="oWA-8R-cOd" secondAttribute="leading" constant="20" id="wIe-rs-X3l"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -98,4 +105,7 @@
             <point key="canvasLocation" x="841" y="-25"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder_thumb" width="120" height="90"/>
+    </resources>
 </document>

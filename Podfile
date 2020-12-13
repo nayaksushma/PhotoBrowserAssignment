@@ -7,6 +7,7 @@ target 'PhotoBrowser' do
 
   # Pods for PhotoBrowser
   pod 'Alamofire', '~> 5.0.0-rc.3'
+  pod 'SDWebImage', '~> 5.0'
 
   target 'PhotoBrowserTests' do
     inherit! :search_paths

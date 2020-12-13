@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
 
@@ -24,7 +25,6 @@ class ViewController: UIViewController {
         photoListTableView.estimatedRowHeight = 120
         photoListTableView.rowHeight = UITableView.automaticDimension
         navigationController?.navigationBar.prefersLargeTitles = true
-        
     }
 
 
@@ -44,6 +44,8 @@ extension ViewController: UITableViewDataSource {
             fatalError("Failed to create photo Cell")
         }
         photoCell.titleLabel?.text = photoListVM.nameForPhotoAtIndex(indexPath.row)
+        let imageURL = photoListVM.thumbURLForPhotoAtIndex(indexPath.row)
+        photoCell.thumbImageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "placeholder_thumb"), options: SDWebImageOptions.retryFailed, completed: nil)
         return photoCell
     }
 

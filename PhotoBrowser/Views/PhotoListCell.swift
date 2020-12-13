@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoListCell: UITableViewCell {
 
@@ -20,7 +21,8 @@ class PhotoListCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        thumbImageView.sd_cancelCurrentImageLoad()
+        thumbImageView.image = UIImage(named: "placeholder_thumb")
+        thumbImageView.sd_cancelCurrentImageLoad()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
